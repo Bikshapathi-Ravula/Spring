@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: ctel
+Build-Jdk: 17.0.7
+Implementation-Title: gateway
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.marcuseisele.springboot_microservices
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/gatewayservice
+Created-By: Maven Integration for Eclipse
+
