@@ -1,0 +1,6 @@
+com\ctel\beanAuditing\config\AuditingConfig.class
+com\ctel\beanAuditing\contrl\TaskController.class
+com\ctel\beanAuditing\bean\Task.class
+com\ctel\beanAuditing\ServletInitializer.class
+com\ctel\beanAuditing\Application.class
+com\ctel\beanAuditing\repo\TaskRepository.class
