@@ -1,0 +1,233 @@
+package com.hpcl.thread;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+
+import com.hpcl.constant.AppConstant;
+import com.hpcl.constant.ValidateStatus;
+import com.hpcl.dto.CapStore;
+import com.hpcl.dto.CasePrintingDetails;
+import com.hpcl.dto.ScannedCaseBarcode;
+import com.hpcl.dto.SecondaryPackScanning;
+import com.hpcl.service.CapStoreService;
+import com.hpcl.service.CasePrintingDetailsService;
+import com.hpcl.service.ScannedCaseBarcodeService;
+import com.hpcl.service.SecondaryPackScanningService;
+import com.hpcl.util.CommonValueUtil;
+
+public class TopScanningCameraReadThread extends Thread {
+
+    private CapStoreService capStoreService;
+    private SecondaryPackScanningService secondaryPackScanningService;
+    private ScannedCaseBarcodeService scannedCaseBarcodeService;
+    private CasePrintingDetailsService casePrintingDetailsService;
+    private CommonValueUtil commonValueUtil;
+    private boolean flag = true;
+    private long readValCount = 0;
+    private Socket socket = null;
+    private InputStream output = null;
+
+    public TopScanningCameraReadThread(CommonValueUtil commonValueUtil, CapStoreService capStoreService,
+            SecondaryPackScanningService secondaryPackScanningService,
+            ScannedCaseBarcodeService scannedCaseBarcodeService,
+            CasePrintingDetailsService casePrintingDetailsService) {
+        this.casePrintingDetailsService = casePrintingDetailsService;
+        this.capStoreService = capStoreService;
+        this.secondaryPackScanningService = secondaryPackScanningService;
+        this.scannedCaseBarcodeService = scannedCaseBarcodeService;
+        this.commonValueUtil = commonValueUtil;
+    }
+
+    public void startScanning() throws InterruptedException, IOException {
+
+        while (true) {
+
+            try {
+                Thread.sleep(2000);
+
+                socket = new Socket(commonValueUtil.getTopScanCameraIp(), commonValueUtil.getTopScanCameraPort());
+                output = socket.getInputStream();
+            } catch (Exception e) {
+
+                //e.printStackTrace();
+                socket = null;
+                output = null;
+                Thread.sleep(5000);
+            }
+
+            if (socket != null && output != null) {
+                try {
+                    byte[] buffer = new byte[1024];
+
+                    int read;
+                    int scancountNum = 0;
+
+                    while (flag) {
+
+                        if (readValCount < output.available()) {
+                            while ((read = output.read(buffer)) >= -1) {
+
+                                String bufferData = new String(buffer, 0, read);
+                                System.out.println("\nData:" + bufferData);
+
+                                try {
+
+                                    if (bufferData.contains(",")) {
+                                        secondaryPackScanningService.deleteAll();
+
+                                        String[] listOfLabels = bufferData.split(",");
+                                        for (String labelRead : listOfLabels) {
+                                            String[] labelRead1 = labelRead.split(":");
+                                            String barcode = labelRead1[0].trim();
+                                            String uuid = labelRead1[2].trim();
+                                            this.UpdateReadData(barcode, uuid);
+                                        }
+                                    } else {
+                                        String[] listOfLabels = bufferData.split(":");
+                                        String barcode = listOfLabels[0].trim();
+                                        String scanCountRead = listOfLabels[1].trim();
+                                        String uuid = listOfLabels[2].trim();
+
+                                        Integer scanCount = Integer.parseInt(scanCountRead);
+
+                                        if (scancountNum != scanCount && scancountNum + 1 != scanCount
+                                                && !uuid.equals("000")) {
+                                            secondaryPackScanningService.deleteAll();
+
+                                            System.out.println("Deleted");
+                                        }
+                                        if (!uuid.equals("000")) {
+                                            scancountNum = scanCount;
+                                        }
+
+                                        this.UpdateReadData(barcode, uuid);
+
+                                    }
+
+                                } catch (IndexOutOfBoundsException e) {
+                                    // e.printStackTrace();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                readValCount = output.available();
+                                break;
+                            }
+                        }
+                    }
+                    socket.close();
+                    Thread.currentThread().interrupt();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void UpdateReadData(String barcode, String uuid) {
+        // update case barcode data
+        if (uuid.equals("000")) {
+
+            CasePrintingDetails casePrintingDetails = casePrintingDetailsService.getByCartonQr(barcode);
+
+            if (casePrintingDetails != null) {
+
+                if (casePrintingDetails.getStatus() == AppConstant.PRINT_COMPLETED) {
+                    this.updateScannedCaseBarcodeData(uuid, ValidateStatus.VALID_BARCODE, barcode);
+
+                } else if (casePrintingDetails.getStatus() == AppConstant.STATUS_CC) {
+                    this.updateScannedCaseBarcodeData(uuid, ValidateStatus.DUPLICATE_BARCODE, barcode);
+                } else {
+                    this.updateScannedCaseBarcodeData(uuid, ValidateStatus.INVALID_BARCODE, barcode);
+                }
+            } else {
+                this.updateScannedCaseBarcodeData(uuid, ValidateStatus.INVALID_BARCODE, barcode);
+            }
+
+            // Update the labels data
+        } else {
+
+            CapStore capStore = capStoreService.findByCapBarcode(barcode);
+
+            if (capStore != null) {
+
+                if (capStore.getStatus() == AppConstant.STATUS_CB) {
+                    this.updateSecondaryPackScanning(uuid, barcode, ValidateStatus.VALID_BARCODE);
+
+                } else if (capStore.getStatus() == AppConstant.STATUS_CC) {
+                    this.updateSecondaryPackScanning(uuid, barcode, ValidateStatus.DUPLICATE_BARCODE);
+                } else {
+                    this.updateSecondaryPackScanning(uuid, barcode, ValidateStatus.INVALID_BARCODE);
+                }
+            } else {
+                this.updateSecondaryPackScanning(uuid, barcode, ValidateStatus.INVALID_BARCODE);
+            }
+        }
+    }
+
+    /**
+     * Update SecondaryPackScanning Data
+     *
+     * @param uuid
+     * @param barcode
+     * @param status
+     */
+    public void updateSecondaryPackScanning(String uuid, String barcode, Integer status) {
+
+        SecondaryPackScanning existSecondaryPackScanning = secondaryPackScanningService.getByUuid(uuid);
+
+        if (existSecondaryPackScanning != null) {
+
+            existSecondaryPackScanning.setCapQr(barcode);
+            existSecondaryPackScanning.setStatus(status);
+            secondaryPackScanningService.update(existSecondaryPackScanning);
+
+        } else {
+
+            SecondaryPackScanning secondaryPackScanning = new SecondaryPackScanning();
+
+            secondaryPackScanning.setUuid(uuid);
+            secondaryPackScanning.setCapQr(barcode);
+            secondaryPackScanning.setStatus(status);
+
+            secondaryPackScanningService.insert(secondaryPackScanning);
+        }
+    }
+
+    /**
+     * Update the ScannedCaseBarcode Data
+     *
+     * @param uuid
+     * @param status
+     * @param barcode
+     */
+    public void updateScannedCaseBarcodeData(String uuid, Integer status, String barcode) {
+
+        ScannedCaseBarcode existCaseBarcode = scannedCaseBarcodeService.findByUuid(uuid);
+
+        if (existCaseBarcode != null) {
+            existCaseBarcode.setCaseBarcode(barcode);
+            existCaseBarcode.setStatus(status);
+
+            scannedCaseBarcodeService.update(existCaseBarcode);
+
+        } else {
+            ScannedCaseBarcode scannedCaseBarcode = new ScannedCaseBarcode();
+            scannedCaseBarcode.setUuid(uuid);
+            scannedCaseBarcode.setCaseBarcode(barcode);
+            scannedCaseBarcode.setStatus(status);
+
+            scannedCaseBarcodeService.insert(scannedCaseBarcode);
+        }
+    }
+
+    @Override
+    public void run() {
+        try {
+            startScanning();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
