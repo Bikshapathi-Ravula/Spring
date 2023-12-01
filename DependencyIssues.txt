@@ -1,0 +1,125 @@
+
+    NoSuchBeanDefinitionException:
+        When it occurs: This exception is thrown when you try to retrieve a bean from the Spring ApplicationContext, 
+                        but the requested bean definition is not found.
+        Why it occurs: This can happen if you are trying to inject a bean that Spring doesn't know about or if there's a typo in the bean name.
+
+        Description: This exception occurs when attempting to retrieve a bean from the container, but the requested bean definition is not found.
+       Possible Causes: It can happen if there is a typo in the bean name or if the requested bean is not defined in the Spring configuration.
+  
+    BeanCreationException/BeanInitializationException:
+        
+         When it occurs: This exception is a general exception that can be thrown during the creation of a bean.
+         Why it occurs: There are various reasons for this exception, including problems with the constructor of the bean,
+                         circular dependencies, or if the bean's initialization method throws an exception.
+         Description: This exception is thrown when the Spring container is unable to create an instance of a bean.
+         Possible Causes: It can be caused by issues such as the inability to resolve dependencies,
+                          problems with the bean's constructor, or exceptions thrown during the initialization of the bean.
+         Description: Thrown when an error occurs during the initialization of a bean, usually in the bean's initialization method.
+         Possible Causes: Issues within the bean's initialization code, such as runtime exceptions or errors.
+    
+ AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement: Injection of autowired dependencies failed:
+        When it occurs: This exception is thrown when Spring is unable to satisfy the dependencies marked with @Autowired annotation.
+        Why it occurs: It can occur due to the unavailability of a suitable bean for injection, 
+                       or if there are multiple candidates and Spring is unable to determine the correct one.
+
+    UnsatisfiedDependencyException:
+        When it occurs: This exception is thrown when a bean cannot be created due to unsatisfied dependencies.
+        Why it occurs: It may occur when Spring cannot find a suitable candidate for autowiring or when there is a mismatch in the type of the dependency.
+
+
+    BeanCurrentlyInCreationException:
+        When it occurs: This exception is thrown when a bean is currently in creation and another attempt to create the same bean is made.
+        Why it occurs: This can happen with circular dependencies where beans depend on each other,
+                       and the container is not able to resolve the circular reference.
+
+    NoUniqueBeanDefinitionException:
+        When it occurs: This exception is thrown when there are multiple beans of the same type, and Spring is unable to determine which one to inject.
+        Why it occurs: It occurs when there are multiple candidate beans of the same type, and Spring doesn't know which one to choose.
+
+    IllegalStateException: Cannot convert value of type '...': no matching editors or conversion strategy found:
+        When it occurs: This exception is thrown when Spring is unable to convert the value of a property to the required type during injection.
+                        It may occur in situations like attempting to modify an immutable object or when trying to perform an operation that 
+                        is not allowed in the current state.
+        Why it occurs: It can occur if the value provided in the configuration or property file cannot be converted to the type expected by the bean.
+
+
+UnsatisfiedDependencyException:
+
+    Description: This exception is thrown when a bean has an unsatisfied dependency.
+    Possible Causes: It can occur when Spring cannot find a suitable candidate for autowiring or when there is a mismatch in the type of the dependency.
+
+IllegalStateException:
+
+    Description: This exception can be thrown for various illegal state conditions.
+    Possible Causes: It may occur in situations like attempting to modify an immutable object or when trying to perform an operation that is not allowed in the current state.
+
+NoUniqueBeanDefinitionException:
+
+    Description: Thrown when there are multiple beans of the same type, and Spring cannot determine which one to inject.
+    Possible Causes: It occurs when there are multiple candidate beans of the same type, and Spring doesn't know which one to choose.
+
+TransactionSystemException/DataAccessException:
+
+    Description: This exception is related to transaction management and can be thrown when there are issues with the underlying transaction system.
+    Possible Causes: Problems such as database connection issues, transaction timeout, or failure to commit or rollback a transaction
+    Description: This is a generic exception for all data access issues.
+    Possible Causes: It can be thrown for a variety of reasons, including database connection problems, SQL syntax errors, or issues with the underlying data store.
+
+InvalidPropertyException:
+
+    Description: Thrown when there is an attempt to set an invalid property on a bean.
+    Possible Causes: It may occur if the property name is misspelled or if the value cannot be converted to the expected type.
+
+ConversionNotSupportedException:
+
+    Description: This exception is thrown when a required conversion is not supported.
+    Possible Causes: It can occur when Spring attempts to convert a value from one type to another, but there is no suitable conversion strategy available
+
+Beans and Core Container Exceptions:
+
+    BeanCreationException: Thrown when the creation of a bean fails.
+    BeanCurrentlyInCreationException: Thrown when a bean is currently in creation and another attempt to create the same bean is made.
+    BeanDefinitionStoreException: Thrown when a problem occurs while loading or accessing bean definitions.
+    NoSuchBeanDefinitionException: Thrown when attempting to retrieve a bean, but the requested bean definition is not found.
+    NoUniqueBeanDefinitionException: Thrown when there are multiple beans of the same type, and Spring cannot determine which one to inject.
+
+Autowiring and Dependency Injection Exceptions:
+
+    UnsatisfiedDependencyException: Thrown when a bean has an unsatisfied dependency.
+    AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement: Thrown when Spring is unable to satisfy dependencies marked with @Autowired.
+    InjectionFailureException: Thrown when injection of a dependency fails.
+
+Transaction Management Exceptions:
+
+    TransactionSystemException: Thrown when there are issues with the underlying transaction system.
+    CannotCreateTransactionException: Thrown when a transaction cannot be created, typically due to issues with the transaction manager.
+    UnexpectedRollbackException: Thrown when a transaction unexpectedly rolls back.
+
+Data Access Exceptions:
+
+    DataAccessException: A generic exception for all data access issues.
+    UncategorizedDataAccessException: Thrown when a generic, uncategorized data access issue is encountered.
+    CannotAcquireLockException: Thrown when a lock cannot be acquired.
+
+Validation Exceptions:
+
+    DataIntegrityViolationException: Thrown when a data integrity violation occurs, such as a unique key violation.
+    InvalidPropertyException: Thrown when there is an attempt to set an invalid property on a bean.
+    MethodArgumentNotValidException: Thrown when method-level validation fails.
+
+Web-related Exceptions:
+
+    HttpMessageNotReadableException: Thrown when there is an error reading the HTTP message.
+    HttpMessageNotWritableException: Thrown when there is an error writing the HTTP message.
+    MissingServletRequestParameterException: Thrown when a required request parameter is missing.
+
+Security Exceptions:
+
+    AuthenticationException: Thrown for authentication-related issues.
+    AccessDeniedException: Thrown when access to a resource is denied.
+
+Aspect-Oriented Programming (AOP) Exceptions:
+
+    AspectException: A generic base class for AOP-related exceptions.
+    AspectJExpressionPointcutParsingException: Thrown when there is an error parsing an AspectJ expression pointcut
