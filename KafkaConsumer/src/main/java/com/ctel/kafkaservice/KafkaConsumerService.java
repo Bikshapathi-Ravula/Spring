@@ -10,7 +10,8 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import com.ctel.entity.ShipmentData;
-import com.ctel.service.ShipmentDataService;
+//import com.ctel.service.ShipmentDataService;
+import com.ctel.service.XMLParserService;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -18,8 +19,19 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 @Service
 public class KafkaConsumerService {
 
+//	@Autowired
+//	private ShipmentDataService shipmentDataService;
+	
 	@Autowired
-	private ShipmentDataService shipmentDataService;
+	private XMLParserService xMLParserService;
+	
+	
+
+	public KafkaConsumerService(/* ShipmentDataService shipmentDataService, */ XMLParserService xMLParserService) {
+		super();
+//		this.shipmentDataService = shipmentDataService;
+		this.xMLParserService = xMLParserService;
+	}
 
 	private static final Logger log = LoggerFactory.getLogger(KafkaConsumerService.class);
 
@@ -35,25 +47,7 @@ public class KafkaConsumerService {
 
 		System.out.println(data);
 		
-		ShipmentData mappedShipmentData = mapper.readValue(data, ShipmentData.class);
-
-//		if (couponreportdata.getTable().equals("bpcl_coupon_report_data")) {
-//
-//			if (couponreportdata.getOp().equals("c")) {
-//				log.info("Table Name is <<<<<<<<<<<<<<< bpcl_coupon_report_data >>>>>>>>>>>>>");
-//				CouponReportData result = couponReportDataservice.createCouponReportData(couponreportdata);
-//				System.out.println(result);
-//			} else if (couponreportdata.getOp().equals("u")) {
-//				CouponReportData result = couponReportDataservice.updateCouponReportData(null, couponreportdata);
-//				System.out.println(result);
-//			} else {
-//				System.out.println("Operation Not Supported");
-//			}
-//		} else
-//			System.out.println("Not available in the given Tables");
-
-		ShipmentData savedShipmentData=shipmentDataService.createShipment(mappedShipmentData);
-		System.out.println(savedShipmentData);
+		ShipmentData obtainedShipmentData = xMLParserService.convertXmlToJava(data);
 		
 		log.info("Message Subscribed Successfully");
 	}

@@ -29,6 +29,11 @@ public class ShipmentData {
         public void setShipment(List<Shipment> shipment) {
             this.shipment = shipment;
         }
+
+		@Override
+		public String toString() {
+			return "Shipments [shipment=" + shipment + "]";
+		}
     }
 
     public static class Shipment {
@@ -333,6 +338,12 @@ public class ShipmentData {
 				super();
 				// TODO Auto-generated constructor stub
 			}
+
+			@Override
+			public String toString() {
+				return "ShipmentDetails [shipmentDetail=" + shipmentDetail + "]";
+			}
+			
         }
 
         public static class Cases {
@@ -357,6 +368,12 @@ public class ShipmentData {
 				super();
 				// TODO Auto-generated constructor stub
 			}
+
+			@Override
+			public String toString() {
+				return "Cases [_case=" + _case + "]";
+			}
+			
         }
 
         public static class TransferPermits {
@@ -382,7 +399,26 @@ public class ShipmentData {
 				// TODO Auto-generated constructor stub
 			}
 
+			@Override
+			public String toString() {
+				return "TransferPermits [transferPermit=" + transferPermit + "]";
+			}
+
         }
+
+		@Override
+		public String toString() {
+			return "Shipment [shipmentId=" + shipmentId + ", asnCode=" + asnCode + ", asnStatus=" + asnStatus
+					+ ", depatureTime=" + depatureTime + ", sourceLocationId=" + sourceLocationId
+					+ ", sourceLocationName=" + sourceLocationName + ", destinationLocationId=" + destinationLocationId
+					+ ", destinationLocationName=" + destinationLocationName + ", consignmentType=" + consignmentType
+					+ ", initiatorId=" + initiatorId + ", initiatorLocationId=" + initiatorLocationId + ", approvedOn="
+					+ approvedOn + ", depatureDate=" + depatureDate + ", status=" + status + ", createdBy=" + createdBy
+					+ ", createdOn=" + createdOn + ", updatedOn=" + updatedOn + ", addressIdDist=" + addressIdDist
+					+ ", destAddressIdDist=" + destAddressIdDist + ", shipmentDetails=" + shipmentDetails + ", cases="
+					+ cases + ", transferPermits=" + transferPermits + "]";
+		}
+        
     }
 
     public static class ShipmentDetail {
@@ -518,6 +554,14 @@ public class ShipmentData {
 			// TODO Auto-generated constructor stub
 		}
 
+		@Override
+		public String toString() {
+			return "ShipmentDetail [shipmentDetailId=" + shipmentDetailId + ", osfCode=" + osfCode + ", osfNumber="
+					+ osfNumber + ", productCode=" + productCode + ", productName=" + productName + ", sizeCode="
+					+ sizeCode + ", packType=" + packType + ", ofsQuantity=" + ofsQuantity + ", shipmentQuantity="
+					+ shipmentQuantity + ", priceGroupId=" + priceGroupId + "]";
+		}
+
     }
 
     public static class Case {
@@ -541,6 +585,11 @@ public class ShipmentData {
 		public Case() {
 			super();
 			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public String toString() {
+			return "Case [caseCode=" + caseCode + "]";
 		}
 		
     }
@@ -738,5 +787,21 @@ public class ShipmentData {
 			// TODO Auto-generated constructor stub
 		}
 
+		@Override
+		public String toString() {
+			return "TransferPermit [transferPermitCode=" + transferPermitCode + ", lrNumber=" + lrNumber
+					+ ", transporter=" + transporter + ", vehicleNumber=" + vehicleNumber + ", issueDate=" + issueDate
+					+ ", issueTime=" + issueTime + ", validityDate=" + validityDate + ", validityTime=" + validityTime
+					+ ", validityPeriod=" + validityPeriod + ", route=" + route + ", status=" + status + ", createdBy="
+					+ createdBy + ", createdOn=" + createdOn + ", shipmentId=" + shipmentId + ", lrDate=" + lrDate
+					+ "]";
+		}
+
     }
+
+	@Override
+	public String toString() {
+		return "ShipmentData [shipments=" + shipments + "]";
+	}
+
 }
