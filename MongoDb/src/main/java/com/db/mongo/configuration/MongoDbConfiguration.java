@@ -25,6 +25,6 @@ public class MongoDbConfiguration extends AbstractMongoClientConfiguration {
 	@Override
 	protected void configureClientSettings(MongoClientSettings.Builder builder) {
 		builder.applyToClusterSettings(
-				settings -> settings.hosts(Arrays.asList(new ServerAddress("localhost", port))));
+				settings -> settings.hosts(Arrays.asList(new ServerAddress(host, port))));
 	}
 }
