@@ -14,7 +14,7 @@ public class MqttDemoApplication {
 	public static void main(String[] args) throws MqttException {
 		SpringApplication.run(MqttDemoApplication.class, args);
 
-		System.out.println("A");
+		System.out.println("A") ;
 
 		String broker = "tcp://10.10.14.249:1883";
 		String topic = "myTopic";
