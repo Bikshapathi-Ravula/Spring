@@ -1,0 +1,27 @@
+# zuul-gateway application.yml
+spring:
+  application:
+    name: zuul-gateway
+server:
+  port: 8088
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: http://eureka-server:8761/eureka
+zuul:
+  routes:
+     Fservice:
+       path: http:8081/Fservice/api
+       service-id: Fservice
+     Sservice:
+       path: http:8082/Sservice/api
+       service-id: Sservice
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled:false
+            
+
