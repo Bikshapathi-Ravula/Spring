@@ -1,0 +1,10 @@
+steps to install SVN on linux
+
+step-1: sudo apt-get update
+
+step-2: sudo apt-get install subversion -y
+
+step-3: svn --version
+
+
+
