@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="collections/src"/>
+	<classpathentry kind="src" path="com.ctel.beanAuditing/src/main/java"/>
+	<classpathentry kind="src" path="com.ctel.beanAuditing/src/test/java"/>
+	<classpathentry kind="src" path="com.ctel.beanmapping/src/main/java"/>
+	<classpathentry kind="src" path="com.ctel.ProductionPlan/src/main/java"/>
+	<classpathentry excluding="com/scyllaDB/control/|com/scyllaDB/ser/|com/scyllaDB/repo/|com/scyllaDB/model/" kind="src" path="com.ctel.scyllaDb/src/main/java"/>
+	<classpathentry kind="src" path="com.ctel.scyllaDb/src/main/java/com/scyllaDB/control"/>
+	<classpathentry kind="src" path="com.ctel.scyllaDb/src/main/java/com/scyllaDB/model"/>
+	<classpathentry kind="src" path="com.ctel.scyllaDb/src/main/java/com/scyllaDB/repo"/>
+	<classpathentry kind="src" path="com.ctel.scyllaDb/src/main/java/com/scyllaDB/ser"/>
+	<classpathentry kind="src" path="CyllaDBDemo/src/main/java"/>
+	<classpathentry kind="src" path="CyllaDBDemo/src/test/java"/>
+	<classpathentry kind="src" path="DataSourceRountingReadWrite/src/main/java"/>
+	<classpathentry kind="src" path="DataSourceRountingReadWrite/src/test/java"/>
+	<classpathentry kind="src" path="Debezium/src/main/java"/>
+	<classpathentry kind="src" path="Http/src"/>
+	<classpathentry kind="src" path="Java8Features/src"/>
+	<classpathentry excluding="com/ctel/controller/|com/ctel/repo/|com/ctel/service/" kind="src" path="KafkaConsumer/src/main/java"/>
+	<classpathentry kind="src" path="KafkaConsumer/src/main/java/com/ctel/controller"/>
+	<classpathentry kind="src" path="KafkaConsumer/src/main/java/com/ctel/repo"/>
+	<classpathentry kind="src" path="KafkaConsumer/src/main/java/com/ctel/service"/>
+	<classpathentry kind="src" path="KafkaProducer/src/main/java"/>
+	<classpathentry kind="src" path="MongoDb/src/main/java"/>
+	<classpathentry kind="src" path="MongoDb/src/test/java"/>
+	<classpathentry kind="src" path="MqttDemo/src/main/java"/>
+	<classpathentry kind="src" path="NetWorking/src"/>
+	<classpathentry kind="src" path="OAuth2.0Autherization-server/src/main/java"/>
+	<classpathentry kind="src" path="OAuth2.0Autherization-server/src/test/java"/>
+	<classpathentry kind="src" path="OtpGeneration/src"/>
+	<classpathentry kind="src" path="PaymentIntegration/src/main/java"/>
+	<classpathentry kind="src" path="Qrcode/src/main/java"/>
+	<classpathentry kind="src" path="Qrcode/src/test/java"/>
+	<classpathentry kind="src" path="RedisDatabase/src/main/java"/>
+	<classpathentry excluding="com/ctel/Test/model/" kind="src" path="sending One DB data to ReddisCache/src/main/java"/>
+	<classpathentry kind="src" path="sending One DB data to ReddisCache/src/main/java/com/ctel/Test/model"/>
+	<classpathentry kind="src" path="spring-boot-microservices-master.zip_expanded/spring-boot-microservices-master/configservice/src/main/java"/>
+	<classpathentry kind="src" path="spring-boot-microservices-master.zip_expanded/spring-boot-microservices-master/configservice/src/test/java"/>
+	<classpathentry kind="src" path="spring-boot-microservices-master.zip_expanded/spring-boot-microservices-master/counterservice/src/main/java"/>
+	<classpathentry kind="src" path="spring-boot-microservices-master.zip_expanded/spring-boot-microservices-master/counterservice/src/test/java"/>
+	<classpathentry kind="src" path="spring-boot-microservices-master.zip_expanded/spring-boot-microservices-master/gatewayservice/src/main/java"/>
+	<classpathentry kind="src" path="spring-boot-microservices-master.zip_expanded/spring-boot-microservices-master/gatewayservice/src/test/java"/>
+	<classpathentry kind="src" path="spring-boot-microservices-master.zip_expanded/spring-boot-microservices-master/registryservice/src/main/java"/>
+	<classpathentry kind="src" path="spring-boot-microservices-master.zip_expanded/spring-boot-microservices-master/registryservice/src/test/java"/>
+	<classpathentry kind="src" path="Spring-Multiple-Datasoure/src/main/java"/>
+	<classpathentry kind="src" path="Spring-Multiple-Datasoure/src/test/java"/>
+	<classpathentry kind="src" path="SpringSecurityJWTToken/src/main/java"/>
+	<classpathentry kind="src" path="SpringSecurityJWTToken/src/test/java"/>
+	<classpathentry excluding="com.ctel.scyllaDb/src/main/java/com/scyllaDB/model/|com.ctel.scyllaDb/src/main/java/com/scyllaDB/ser/|com.ctel.scyllaDb/src/main/java/|com.ctel.scyllaDb/src/main/java/com/scyllaDB/control/|com.ctel.scyllaDb/src/main/java/com/scyllaDB/repo/" kind="src" path="StreamApi/src"/>
+	<classpathentry excluding="com/scyllaDB/model/|com/scyllaDB/ser/|com/scyllaDB/control/|com/scyllaDB/repo/" kind="src" path="StreamApi/src/com.ctel.scyllaDb/src/main/java"/>
+	<classpathentry kind="src" path="StreamApi/src/com.ctel.scyllaDb/src/main/java/com/scyllaDB/control"/>
+	<classpathentry kind="src" path="StreamApi/src/com.ctel.scyllaDb/src/main/java/com/scyllaDB/model"/>
+	<classpathentry kind="src" path="StreamApi/src/com.ctel.scyllaDb/src/main/java/com/scyllaDB/repo"/>
+	<classpathentry kind="src" path="StreamApi/src/com.ctel.scyllaDb/src/main/java/com/scyllaDB/ser"/>
+	<classpathentry kind="src" path="Threads/src"/>
+	<classpathentry kind="src" path="Zuul-Gateway-routing-with-eureka/Fservice/src/main/java"/>
+	<classpathentry kind="src" path="Zuul-Gateway-routing-with-eureka/Fservice/src/test/java"/>
+	<classpathentry kind="src" path="Zuul-Gateway-routing-with-eureka/netflix-zuul-api-gateway-server.zip_expanded/netflix-zuul-api-gateway-server/src/main/java"/>
+	<classpathentry kind="src" path="Zuul-Gateway-routing-with-eureka/Server/src/main/java"/>
+	<classpathentry kind="src" path="Zuul-Gateway-routing-with-eureka/Server/src/test/java"/>
+	<classpathentry kind="src" path="Zuul-Gateway-routing-with-eureka/Sservice/src/main/java"/>
+	<classpathentry kind="src" path="Zuul-Gateway-routing-with-eureka/Sservice/src/test/java"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/antlr4-runtime-4.10.1.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-annotations-2.15.2.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-core-2.15.2.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-databind-2.15.2.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-datatype-jdk8-2.15.2.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-datatype-jsr310-2.15.2.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-module-parameter-names-2.15.2.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/jakarta.annotation-api-2.1.1.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/jul-to-slf4j-2.0.7.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-api-2.20.0.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-to-slf4j-2.20.0.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/logback-classic-1.4.8.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/logback-core-1.4.8.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/mapstruct-1.4.2.Final.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/micrometer-commons-1.11.2.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/micrometer-observation-1.11.2.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/slf4j-api-2.0.7.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/snakeyaml-1.33.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/spring-aop-6.0.11.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/spring-beans-6.0.11.jar"/>
+	<classpathentry kind="lib" path="com.ctel.beanmapping/target/com.ctel.bean-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-3.1.2.jar"/>
+	<classpathentry kind="lib" path="com.ctel.ProductionPlan/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="Http/bin"/>
+</classpath>
