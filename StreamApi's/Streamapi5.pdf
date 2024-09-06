@@ -1,0 +1,255 @@
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
+
+class Product {
+    private String name;
+    private String category;
+    private double price;
+
+    // Constructor, getters, and setters
+
+    public Product(String name, String category, double price) {
+        this.name = name;
+        this.category = category;
+        this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
+
+class Order {
+    private LocalDate date;
+    private List<Product> products;
+
+    // Constructor, getters, and setters
+
+    public Order(LocalDate date, List<Product> products) {
+        this.date = date;
+        this.products = products;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        List<Order> orders = Arrays.asList(
+            new Order(LocalDate.of(2024, 8, 1), Arrays.asList(
+                new Product("Laptop", "Electronics", 1200.00),
+                new Product("Headphones", "Accessories", 150.00)
+            )),
+            new Order(LocalDate.of(2024, 8, 1), Arrays.asList(
+                new Product("Smartphone", "Electronics", 800.00),
+                new Product("Monitor", "Electronics", 300.00)
+            )),
+            new Order(LocalDate.of(2024, 8, 2), Arrays.asList(
+                new Product("Tablet", "Electronics", 600.00),
+                new Product("Keyboard", "Accessories", 50.00)
+            ))
+        );
+
+        Map<LocalDate, Map<String, Double>> totalSalesByDateAndCategory = orders.stream()
+            .collect(Collectors.groupingBy(Order::getDate,
+                Collectors.flatMapping(order -> order.getProducts().stream(),
+                    Collectors.groupingBy(Product::getCategory,
+                        Collectors.summingDouble(Product::getPrice)))));
+
+        totalSalesByDateAndCategory.forEach((date, salesByCategory) -> {
+            System.out.println("Date: " + date);
+            salesByCategory.forEach((category, totalSales) -> 
+                System.out.println("Category: " + category + ", Total Sales: $" + totalSales));
+        });
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        List<Order> orders = Arrays.asList(
+            new Order(LocalDate.of(2024, 8, 1), Arrays.asList(
+                new Product("Laptop", "Electronics", 1200.00),
+                new Product("Headphones", "Accessories", 150.00)
+            )),
+            new Order(LocalDate.of(2024, 8, 1), Arrays.asList(
+                new Product("Smartphone", "Electronics", 800.00),
+                new Product("Monitor", "Electronics", 300.00)
+            )),
+            new Order(LocalDate.of(2024, 8, 2), Arrays.asList(
+                new Product("Tablet", "Electronics", 600.00),
+                new Product("Keyboard", "Accessories", 50.00)
+            ))
+        );
+
+        Map<LocalDate, Map<String, Double>> totalSalesByDateAndCategory = orders.stream()
+            .collect(Collectors.groupingBy(Order::getDate,
+                Collectors.flatMapping(order -> order.getProducts().stream(),
+                    Collectors.groupingBy(Product::getCategory,
+                        Collectors.summingDouble(Product::getPrice)))));
+
+        totalSalesByDateAndCategory.forEach((date, salesByCategory) -> {
+            System.out.println("Date: " + date);
+            salesByCategory.forEach((category, totalSales) -> 
+                System.out.println("Category: " + category + ", Total Sales: $" + totalSales));
+        });
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        List<Order> orders = Arrays.asList(
+            new Order(LocalDate.of(2024, 8, 1), Arrays.asList(
+                new Product("Laptop", "Electronics", 1200.00),
+                new Product("Headphones", "Accessories", 150.00)
+            )),
+            new Order(LocalDate.of(2024, 8, 1), Arrays.asList(
+                new Product("Smartphone", "Electronics", 800.00),
+                new Product("Monitor", "Electronics", 300.00)
+            )),
+            new Order(LocalDate.of(2024, 8, 2), Arrays.asList(
+                new Product("Tablet", "Electronics", 600.00),
+                new Product("Keyboard", "Accessories", 50.00)
+            ))
+        );
+
+        Map<LocalDate, Map<String, Double>> totalSalesByDateAndCategory = orders.stream()
+            .collect(Collectors.groupingBy(Order::getDate,
+                Collectors.flatMapping(order -> order.getProducts().stream(),
+                    Collectors.groupingBy(Product::getCategory,
+                        Collectors.summingDouble(Product::getPrice)))));
+
+        totalSalesByDateAndCategory.forEach((date, salesByCategory) -> {
+            System.out.println("Date: " + date);
+            salesByCategory.forEach((category, totalSales) -> 
+                System.out.println("Category: " + category + ", Total Sales: $" + totalSales));
+        });
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        List<Order> orders = Arrays.asList(
+            new Order(LocalDate.of(2024, 8, 1), Arrays.asList(
+                new Product("Laptop", "Electronics", 1200.00),
+                new Product("Headphones", "Accessories", 150.00)
+            )),
+            new Order(LocalDate.of(2024, 8, 1), Arrays.asList(
+                new Product("Smartphone", "Electronics", 800.00),
+                new Product("Monitor", "Electronics", 300.00)
+            )),
+            new Order(LocalDate.of(2024, 8, 2), Arrays.asList(
+                new Product("Tablet", "Electronics", 600.00),
+                new Product("Keyboard", "Accessories", 50.00)
+            ))
+        );
+
+        Map<LocalDate, Map<String, Double>> totalSalesByDateAndCategory = orders.stream()
+            .collect(Collectors.groupingBy(Order::getDate,
+                Collectors.flatMapping(order -> order.getProducts().stream(),
+                    Collectors.groupingBy(Product::getCategory,
+                        Collectors.summingDouble(Product::getPrice)))));
+
+        totalSalesByDateAndCategory.forEach((date, salesByCategory) -> {
+            System.out.println("Date: " + date);
+            salesByCategory.forEach((category, totalSales) -> 
+                System.out.println("Category: " + category + ", Total Sales: $" + totalSales));
+        });
+    }
+}import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
+
+class Payment {
+    private String orderId;
+    private double amount;
+    private LocalDate paymentDate;
+
+    // Constructor, getters, and setters
+
+    public Payment(String orderId, double amount, LocalDate paymentDate) {
+        this.orderId = orderId;
+        this.amount = amount;
+        this.paymentDate = paymentDate;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public LocalDate getPaymentDate() {
+        return paymentDate;
+    }
+}
+
+class Delivery {
+    private String orderId;
+    private LocalDate deliveryDate;
+
+    // Constructor, getters, and setters
+
+    public Delivery(String orderId, LocalDate deliveryDate) {
+        this.orderId = orderId;
+        this.deliveryDate = deliveryDate;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public LocalDate getDeliveryDate() {
+        return deliveryDate;
+    }
+}
+List<Payment> payments = Arrays.asList(
+    new Payment("order1", 100.0, LocalDate.of(2024, 8, 1)),
+    new Payment("order2", 150.0, LocalDate.of(2024, 8, 1)),
+    new Payment("order3", 200.0, LocalDate.of(2024, 8, 2))
+);
+
+Map<LocalDate, Double> totalPaymentsByDate = payments.stream()
+    .collect(Collectors.groupingBy(Payment::getPaymentDate, 
+        Collectors.summingDouble(Payment::getAmount)));
+
+totalPaymentsByDate.forEach((date, total) -> 
+    System.out.println("Date: " + date + ", Total Payments: $" + total));
+List<Delivery> deliveries = Arrays.asList(
+    new Delivery("order1", LocalDate.of(2024, 8, 1)),
+    new Delivery("order2", LocalDate.of(2024, 8, 2)),
+    new Delivery("order3", LocalDate.of(2024, 8, 1))
+);
+
+LocalDate targetDate = LocalDate.of(2024, 8, 1);
+List<String> ordersDeliveredOnDate = deliveries.stream()
+    .filter(delivery -> delivery.getDeliveryDate().equals(targetDate))
+    .map(Delivery::getOrderId)
+    .collect(Collectors.toList());
+
+System.out.println("Orders delivered on " + targetDate + ": " + ordersDeliveredOnDate);
+Map<LocalDate, Double> totalPayments = payments.stream()
+    .collect(Collectors.groupingBy(Payment::getPaymentDate, 
+        Collectors.summingDouble(Payment::getAmount)));
+
+Map<LocalDate, Long> totalDeliveries = deliveries.stream()
+    .collect(Collectors.groupingBy(Delivery::getDeliveryDate, 
+        Collectors.counting()));
+
+Map<LocalDate, String> paymentsAndDeliveries = new HashMap<>();
+totalPayments.forEach((date, totalPayment) -> {
+    long deliveryCount = totalDeliveries.getOrDefault(date, 0L);
+    paymentsAndDeliveries.put(date, "Total Payments: $" + totalPayment + ", Deliveries: " + deliveryCount);
+});
+
+paymentsAndDeliveries.forEach((date, summary) -> 
+    System.out.println("Date: " + date + ", " + summary));
+

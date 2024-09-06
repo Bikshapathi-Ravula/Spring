@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caseshipment.mapper.CamaraStartAndStopMapper">
+	
+	
+	<insert id="insert"
+		parameterType="com.caseshipment.dto.CamaraStartAndStop">
+		INSERT INTO
+		camara_start_and_stop
+		(uuid,status)
+		VALUES
+		(#{uuid},#{status})
+
+	</insert>
+
+
+	<!--Modification -->
+	<update id="update"
+		parameterType="com.caseshipment.dto.CamaraStartAndStop">
+		UPDATE camara_start_and_stop
+		<set>
+			<if test="status != null">status = #{status},</if>
+		</set>
+		WHERE uuid = #{uuid}
+	</update>
+
+
+
+	<!--Delete: delete according to the primary key ID -->
+	<delete id="delete"
+		parameterType="com.caseshipment.dto.CamaraStartAndStop">
+		DELETE FROM camara_start_and_stop
+		WHERE uuid =#{uuid}
+	</delete>
+<delete id="deleteAll"
+		parameterType="com.caseshipment.dto.CamaraStartAndStop">
+		DELETE FROM camara_start_and_stop
+		
+	</delete>
+
+
+ 7
+	<!-- Query (query based on primary key ID) -->
+	<select id="getInfoByUuid"
+		resultType="com.caseshipment.dto.CamaraStartAndStop">
+		SELECT * FROM
+		camara_start_and_stop WHERE uuid =#{uuid}
+	</select>
+
+
+
+	<!-- Query (according to map query） -->
+	<select id="getInfoByMap"
+		resultType="com.caseshipment.dto.CamaraStartAndStop">
+		SELECT *
+		<include refid="sqlForList" />
+		
+	</select>
+
+
+
+	<!--Get a list of generic SQL -->
+	<sql id="sqlForList">
+		FROM camara_start_and_stop
+		<where>
+			<if test="status != null">and status = #{status}</if>
+			
+		</where>
+	</sql>
+
+
+
+
+	<!-- statistics -->
+	<select id="count" resultType="int">
+		select count(*)
+		<include refid="sqlForList" />
+	</select>
+
+
+	<!-- Obtainlist -->
+	<select id="query" resultType="com.caseshipment.dto.CamaraStartAndStop">
+		select *
+		<include refid="sqlForList" />
+		
+	</select>
+
+
+
+
+	<!-- Paging query -->
+	<select id="queryPage"
+		resultType="com.caseshipment.dto.CamaraStartAndStop">
+		select *
+		<include refid="sqlForList" />
+		order by create_time desc
+	</select>
+
+
+
+</mapper>
